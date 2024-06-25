@@ -15,7 +15,7 @@ export function TransferTon() {
   return (
     <Card>
       <FlexBoxCol>
-        <h3>Transfer TON</h3>
+        <h3>Transfer TON HEY</h3>
         <FlexBoxRow>
           <label>Amount </label>
           <Input
