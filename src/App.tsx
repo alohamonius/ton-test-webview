@@ -33,7 +33,10 @@ function App() {
     <StyledApp>
       <AppContainer>
         <FlexBoxCol>
-          <FlexBoxRow>
+          <h1>
+            <b>Hello World!</b>
+          </h1>
+          {/* <FlexBoxRow>
             <TonConnectButton />
             <Button>
               {network
@@ -45,7 +48,7 @@ function App() {
           </FlexBoxRow>
           <Counter />
           <TransferTon />
-          <Jetton />
+          <Jetton /> */}
         </FlexBoxCol>
       </AppContainer>
     </StyledApp>
