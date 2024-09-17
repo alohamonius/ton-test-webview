@@ -33,6 +33,19 @@ export const Button = styled.button`
   font-weight: 700;
   cursor: pointer;
   pointer-events: ${(props) => (props.disabled ? "none" : "inherit")};
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.disabled ? "#6e6e6e" : "var(--tg-theme-button-hover-color)"};
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #333;
+    color: #fefefe;
+  }
 `;
 
 export const Ellipsis = styled.div`

@@ -1,5 +1,5 @@
 import "./App.css";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import { THEME, TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
 import { Jetton } from "./components/Jetton";
 import { TransferTon } from "./components/TransferTon";
@@ -19,7 +19,6 @@ const StyledApp = styled.div`
     color: white;
   }
   min-height: 100vh;
-  padding: 20px 20px;
 `;
 
 const AppContainer = styled.div`
@@ -34,24 +33,30 @@ function App() {
     <StyledApp>
       <AppContainer>
         <FlexBoxCol>
-          <h1>
-            <b>Hello World!</b>
-          </h1>
+          <TonConnectButton
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          />
+          <Button>
+            {network
+              ? network === CHAIN.MAINNET
+                ? "mainnet"
+                : "testnet"
+              : "N/A"}
+          </Button>
+        </FlexBoxCol>
+        <FlexBoxCol>
           <WelcomePage />
-          {/* <FlexBoxRow>
-            <TonConnectButton />
-            <Button>
-              {network
-                ? network === CHAIN.MAINNET
-                  ? "mainnet"
-                  : "testnet"
-                : "N/A"}
-            </Button>
+        </FlexBoxCol>
+        {/* <FlexBoxRow>
+           
           </FlexBoxRow>
           <Counter />
           <TransferTon />
           <Jetton /> */}
-        </FlexBoxCol>
       </AppContainer>
     </StyledApp>
   );

@@ -6,4 +6,8 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 export default defineConfig({
   plugins: [react(), nodePolyfills()],
   base: ((process.env.GITHUB_REPOSITORY ?? "") + "/").match(/(\/.*)/)?.[1],
+  assetsInclude: ["**/*.mov", "**/*.glsl"],
+  define: {
+    globall: {},
+  },
 });
