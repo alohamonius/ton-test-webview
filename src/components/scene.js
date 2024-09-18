@@ -56,7 +56,7 @@ let renderer = createRenderer({ antialias: true }, (_renderer) => {
 
 // Create the camera
 // Pass in fov, near, far and camera position respectively
-let camera = createCamera(45, 1, 1000, { x: 0, y: 0, z: 30 });
+let camera = createCamera(100, 1, 5000, { x: 0, y: 0, z: 30 });
 
 /**************************************************
  * 2. Build your scene in this threejs app
@@ -68,7 +68,7 @@ let app = {
   async initScene() {
     // OrbitControls
     this.controls = new OrbitControls(camera, renderer.domElement);
-    this.controls.enableDamping = true;
+    this.controls.enableDamping = false;
 
     // adding a virtual sun using directional light
     this.dirLight = new THREE.DirectionalLight(0xffffff, params.sunIntensity);
@@ -129,7 +129,7 @@ let app = {
     this.group.add(this.clouds);
 
     // set initial rotational position of earth to get a good initial angle
-    this.earth.rotateY(-0.3);
+    this.earth.rotateY(-20.3);
     this.clouds.rotateY(-0.3);
 
     let atmosGeo = new THREE.SphereGeometry(12.5, 64, 64);

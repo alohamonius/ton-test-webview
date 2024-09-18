@@ -49,12 +49,14 @@ export const runApp = (
   camera,
   enableAnimation = false,
   uniforms = getDefaultUniforms(),
-  composer = null
+  composer = null,
+  containerId
 ) => {
   // Create the HTML container, styles defined in index.html
-  const container = document.getElementById("container");
+  const container = document.getElementById(
+    containerId ? containerId : "container"
+  );
   container.appendChild(renderer.domElement);
-  console.log("ASS");
 
   // Register resize listener
   window.addEventListener("resize", () => {
@@ -110,6 +112,10 @@ export const runApp = (
       composer.render();
     }
   };
+
+  if (!app.initScene) {
+    return;
+  }
 
   app
     .initScene()

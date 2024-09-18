@@ -48,9 +48,7 @@ function App() {
               : "N/A"}
           </Button>
         </FlexBoxCol>
-        <FlexBoxCol>
-          <WelcomePage />
-        </FlexBoxCol>
+        <FlexBoxCol></FlexBoxCol>
         {/* <FlexBoxRow>
            
           </FlexBoxRow>

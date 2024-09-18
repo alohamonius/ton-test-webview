@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Spline from "@splinetool/react-spline";
-import myVideo from "./test.mov";
-import { runApp } from "../core-utils";
-import { app, scene, renderer, camera } from "./scene";
 const WelcomePage = () => {
   const [moonImage, setMoonImage] = useState("");
 
@@ -30,20 +26,9 @@ const WelcomePage = () => {
   }, []);
 
   return (
-    <Container>
+    <Container id="text-container">
       <Title>Welcome to the Full Moon Calendar</Title>
-      {/* <Spline scene="https://prod.spline.design/TYvr6d5vNnuKXMyU/scene.splinecode" /> */}
-      {/* 
-      <video
-        controls={false}
-        autoPlay
-        loop
-        muted
-        style={{ display: "block", width: "100%" }}
-      >
-        <source src={myVideo} type="video/mp4"></source>
-      </video> */}
-      <div id="container"></div>
+
       {/* <Subtitle>
         Discover how many full moons have graced your birthday!
       </Subtitle>
