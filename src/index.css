@@ -40,6 +40,7 @@ a:hover {
   width: 100%;
   background-color: white;
 }
+
 #root {
   position: fixed;
   min-height: 100vh; /* Ensure it fills the viewport */
