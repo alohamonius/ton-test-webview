@@ -26,7 +26,6 @@ const maxZoomIn = 1; // Maximum zoom in level (or distance)
 const totalScrollHeight =
   document.documentElement.scrollHeight - window.innerHeight;
 const parallaxElement = document.getElementById("canvas-container");
-const hideThreshold = window.innerHeight; // When the user scrolls beyond this point, hide the 3D object
 
 function setupMoon(window: Window) {
   let currentScroll = 0;
@@ -69,16 +68,20 @@ function setupMoon(window: Window) {
     const scrollAreaRect = scrollArea?.getBoundingClientRect();
     const canvasContainer = document.getElementById("canvas-container");
     const textContainer = document.getElementById("text-container");
+    const moreContentContainer = document.getElementById("more-content");
 
     // Check if the scroll area is out of view
     if (scrollAreaRect && scrollAreaRect.bottom <= window.innerHeight) {
       //   setElementOpacity(canvasContainer, 0);
       setElementOpacity(textContainer, 0);
       canvasContainer?.classList.add("hidden");
+      moreContentContainer?.classList.add("visible");
       animationActive = false;
       animationFrameRequested = false;
     } else {
       canvasContainer?.classList.remove("hidden");
+      moreContentContainer?.classList.remove("visible");
+
       //   setElementOpacity(canvasContainer, 1);
       setElementOpacity(textContainer, 1);
 

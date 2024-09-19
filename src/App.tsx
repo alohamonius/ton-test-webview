@@ -8,14 +8,19 @@ import "@twa-dev/sdk";
 import WelcomePage from "./components/Welcome";
 
 const StyledApp = styled.div`
-  background-color: #e8e8e8;
+  color: white;
+  /* background-color: #e8e8e8;
   color: black;
 
   @media (prefers-color-scheme: dark) {
     background-color: #222;
     color: white;
-  }
-  min-height: 100vh;
+  } */
+  /* min-height: 100vh; */
+`;
+
+const ContentSection = styled.div`
+  margin: 0 auto;
 `;
 
 const AppContainer = styled.div`
@@ -37,14 +42,21 @@ function App() {
               justifyContent: "center",
             }}
           />
-          <Button>
-            {network
-              ? network === CHAIN.MAINNET
-                ? "mainnet"
-                : "testnet"
-              : "N/A"}
-          </Button>
+          {network && (
+            <Button>
+              {network
+                ? network === CHAIN.MAINNET
+                  ? "mainnet"
+                  : "testnet"
+                : "N/A"}
+            </Button>
+          )}
         </FlexBoxCol>
+        <ContentSection>
+          <FlexBoxCol>
+            <b>HELLO</b>
+          </FlexBoxCol>
+        </ContentSection>
       </AppContainer>
     </StyledApp>
   );

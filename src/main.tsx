@@ -28,23 +28,18 @@ runApp(
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <>
-    <div style={{ zIndex: "11", display: "block" }}>
-      {camera.zoom}
-      {controls.zoom0}
-    </div>
+    <div id="more-content">
+      <div className="header">
+        <TonConnectUIProvider manifestUrl={manifestUrl}>
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
+        </TonConnectUIProvider>
+      </div>
 
-    {/* <WelcomePage /> */}
-    {/* <div className="more-content">
-      <h2>HELLO</h2>
-      <h2>HELLO</h2>
-      <h2>HELLO</h2>
-      <h2>HELLO</h2>
-      <h2>HELLO</h2>
-      <TonConnectUIProvider manifestUrl={manifestUrl}>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </TonConnectUIProvider> 
-    </div> */}
+      <div className="content">
+        <b>CountDown:</b>
+      </div>
+    </div>
   </>
 );

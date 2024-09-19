@@ -5,43 +5,9 @@ import styled from "styled-components";
 const WelcomePage = () => {
   const [moonImage, setMoonImage] = useState("");
 
-  useEffect(() => {
-    // You can replace this with any free moon image link or an API call
-    const fetchMoonImage = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.unsplash.com/photos/random",
-          {
-            params: { query: "moon" },
-            headers: {
-              Authorization: "Client-ID YOUR_UNSPLASH_ACCESS_KEY",
-            },
-          }
-        );
-        setMoonImage(response.data.urls.regular);
-      } catch (error) {
-        console.error("Error fetching moon image:", error);
-      }
-    };
-    fetchMoonImage();
-  }, []);
-
   return (
     <Container id="text-container">
       <Title>Welcome to the Full Moon Calendar</Title>
-
-      {/* <Subtitle>
-        Discover how many full moons have graced your birthday!
-      </Subtitle>
-      <MoonImage
-        src={moonImage || "https://example.com/default-moon.jpg"}
-        alt="Full Moon"
-      />
-      <Footer>
-        <p>
-          Start exploring the lunar phases and the mysteries of the full moon!
-        </p>
-      </Footer> */}
     </Container>
   );
 };

@@ -33,6 +33,7 @@ var controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
 controls.maxDistance = SETTINGS.maxDistance;
 controls.minDistance = SETTINGS.minDistance;
+controls.enabled = false;
 
 renderer.setSize(window.innerWidth - 100, window.innerHeight - 100);
 document.body.appendChild(renderer.domElement);

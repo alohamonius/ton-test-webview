@@ -24,7 +24,7 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  transition: opacity 0.1s ease-in, visibility 0s 0.1s; /* Fast appear */
+  transition: opacity 0.1s ease-in, visibility 0s 0.1s;
 }
 
 #canvas-container.hidden {
@@ -32,11 +32,20 @@ a:hover {
   transition: opacity 0.4s ease-out; /* Slow disappear */
 }
 
-#root {
-  top: 10%;
+#overlap {
   position: relative;
-  left: 0;
-  z-index: 2;
+  min-height: 500vh; /* Ensure it fills the viewport */
+  z-index: 0; /* Default stacking context */
+  overflow: visible;
+  width: 100%;
+  background-color: white;
+}
+#root {
+  position: fixed;
+  min-height: 100vh; /* Ensure it fills the viewport */
+  z-index: 0; /* Default stacking context */
+  overflow: visible;
+  width: 100%;
 }
 
 #text-container {
@@ -57,6 +66,20 @@ a:hover {
   height: 500vh;
 }
 
+#more-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s 0.5s; /* Smooth fade-in and fade-out */
+  padding: 20px;
+}
+
+/* Class to make more-content visible */
+#more-content.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in, visibility 0s 0s; /* Smooth fade-in */
+}
+/* 
 .more-content {
   position: relative;
   font-family: "Open Sans", sans-serif;
@@ -68,4 +91,4 @@ a:hover {
   padding: 0 10% 0 10%;
   z-index: 3;
   opacity: 0;
-}
+} */
