@@ -20,7 +20,9 @@ export const FlexBoxRow = styled.div`
 export const FlexBoxCol = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 `;
 
 export const Button = styled.button`

@@ -5,7 +5,6 @@ import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
-import WelcomePage from "./components/Welcome";
 
 const StyledApp = styled.div`
   color: white;
@@ -29,11 +28,16 @@ const AppContainer = styled.div`
   margin: 0 auto;
 `;
 
+const toHome = (event: any) => {
+  window.scrollTo(0, 0);
+};
+
 function App() {
   const { network } = useTonConnect();
 
   return (
     <StyledApp>
+      <Button onClick={toHome} className="home-button" />
       <AppContainer>
         <FlexBoxCol>
           <TonConnectButton
@@ -55,7 +59,11 @@ function App() {
         </FlexBoxCol>
         <ContentSection>
           <FlexBoxCol>
-            <b>HELLO</b>
+            <div>
+              <b>The next full moon will be:</b>
+              <i>Thursday * 17 October 2024 * 1:26:24 pm</i>
+              <i>Central European Summer Time (CEST)</i>
+            </div>
           </FlexBoxCol>
         </ContentSection>
       </AppContainer>

@@ -45,10 +45,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           </QueryClientProvider>
         </TonConnectUIProvider>
       </div>
-
-      <div className="content">
-        <b>CountDown:</b>
-      </div>
     </StyledApp>
   </>
 );
