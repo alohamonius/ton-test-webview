@@ -1,8 +1,5 @@
 import "./App.css";
 import { THEME, TonConnectButton } from "@tonconnect/ui-react";
-import { Counter } from "./components/Counter";
-import { Jetton } from "./components/Jetton";
-import { TransferTon } from "./components/TransferTon";
 import styled from "styled-components";
 import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -48,13 +45,6 @@ function App() {
               : "N/A"}
           </Button>
         </FlexBoxCol>
-        <FlexBoxCol></FlexBoxCol>
-        {/* <FlexBoxRow>
-           
-          </FlexBoxRow>
-          <Counter />
-          <TransferTon />
-          <Jetton /> */}
       </AppContainer>
     </StyledApp>
   );
