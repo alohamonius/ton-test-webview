@@ -3,8 +3,8 @@ import Stats from "three/examples/jsm/libs/stats.module";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const SETTINGS = {
-  maxDistance: 8,
-  minDistance: 8,
+  maxDistance: 9,
+  minDistance: 9,
 };
 
 var textureURL =
