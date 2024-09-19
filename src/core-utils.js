@@ -81,6 +81,16 @@ export const runApp = (
     uniforms.u_mouse.value.x = e.touches ? e.touches[0].clientX : e.clientX;
     uniforms.u_mouse.value.y = e.touches ? e.touches[0].clientY : e.clientY;
   };
+
+  window.addEventListener(
+    "wheel",
+    function (e) {
+      console.log("scrolled");
+      // code to increment object.position.z
+    },
+    true
+  );
+
   if ("ontouchstart" in window) {
     window.addEventListener("touchmove", mouseListener);
   } else {
