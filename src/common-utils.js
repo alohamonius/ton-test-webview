@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-globall.THREE = THREE;
+// globall.THREE = THREE;
 
 /**
  *

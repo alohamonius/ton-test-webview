@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 
-globall.THREE = THREE;
+// globall.THREE = THREE;
 
 /**
  * Initializes a reasonable uniforms object ready to be used in fragments
