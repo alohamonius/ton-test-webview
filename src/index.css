@@ -34,7 +34,7 @@ a:hover {
 
 #overlap {
   position: relative;
-  min-height: 500vh; /* Ensure it fills the viewport */
+  min-height: 400vh; /* Ensure it fills the viewport */
   z-index: 0; /* Default stacking context */
   overflow: visible;
   width: 100%;
