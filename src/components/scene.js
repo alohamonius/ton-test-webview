@@ -35,7 +35,7 @@ controls.maxDistance = SETTINGS.maxDistance;
 controls.minDistance = SETTINGS.minDistance;
 controls.enabled = false;
 
-renderer.setSize(window.innerWidth - 100, window.innerHeight - 100);
+renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 var geometry = new THREE.SphereGeometry(2, 60, 60);
