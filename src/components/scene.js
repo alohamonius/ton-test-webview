@@ -19,7 +19,7 @@ var camera = new THREE.PerspectiveCamera(
   89, //window.size depends
   window.innerWidth / window.innerHeight,
   0.2,
-  50
+  50_000
 );
 
 const clock = new THREE.Clock();
@@ -30,10 +30,10 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 var controls = new OrbitControls(camera, renderer.domElement);
-controls.enablePan = false;
+controls.enablePan = true;
 controls.maxDistance = SETTINGS.maxDistance;
 controls.minDistance = SETTINGS.minDistance;
-controls.enabled = false;
+controls.enabled = true;
 
 renderer.setSize(window.innerWidth - 100, window.innerHeight - 100);
 document.body.appendChild(renderer.domElement);

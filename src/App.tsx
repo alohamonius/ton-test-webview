@@ -9,6 +9,7 @@ import WelcomePage from "./components/Welcome";
 
 const StyledApp = styled.div`
   color: white;
+
   /* background-color: #e8e8e8;
   color: black;
 

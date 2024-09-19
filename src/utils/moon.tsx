@@ -68,7 +68,9 @@ function setupMoon(window: Window) {
     const scrollAreaRect = scrollArea?.getBoundingClientRect();
     const canvasContainer = document.getElementById("canvas-container");
     const textContainer = document.getElementById("text-container");
-    const moreContentContainer = document.getElementById("more-content");
+    const moreContentContainer = document.getElementById(
+      "more-content-container"
+    );
 
     // Check if the scroll area is out of view
     if (scrollAreaRect && scrollAreaRect.bottom <= window.innerHeight) {

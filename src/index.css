@@ -4,8 +4,12 @@ html,
 body {
   margin: 0;
   overflow-x: hidden;
-  background-color: #11151c;
   background-color: black;
+
+  /* background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-image: url("../public/space-7709489_1280.jpg");*/
 }
 
 a {
@@ -30,6 +34,7 @@ a:hover {
 #canvas-container.hidden {
   opacity: 0 !important;
   transition: opacity 0.4s ease-out; /* Slow disappear */
+  visibility: hidden;
 }
 
 #overlap {
@@ -38,7 +43,7 @@ a:hover {
   z-index: 0; /* Default stacking context */
   overflow: visible;
   width: 100%;
-  background-color: white;
+  background-color: black;
 }
 
 #root {
@@ -67,21 +72,22 @@ a:hover {
   height: 500vh;
 }
 
-#more-content {
+#more-content-container {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease-out, visibility 0s 0.5s; /* Smooth fade-in and fade-out */
   padding: 20px;
+  height: 100vh;
 }
 
 /* Class to make more-content visible */
-#more-content.visible {
+#more-content-container.visible {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.5s ease-in, visibility 0s 0s; /* Smooth fade-in */
 }
 /* 
-.more-content {
+.more-content-container {
   position: relative;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
