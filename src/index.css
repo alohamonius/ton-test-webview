@@ -29,13 +29,18 @@ a:hover {
   width: 100%;
 }
 
-/* App Container */
+.header-container {
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
+  flex-direction: row;
+}
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
-  background-color: #f0f0f5;
+  background-color: black;
 
   img {
     border-top-left-radius: 16px;
@@ -173,4 +178,19 @@ a:hover {
 
 .moon-detail span:last-child {
   font-weight: bold;
+}
+
+.iframe-container {
+  position: relative;
+  width: 80%;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden;
+}
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove border */
 }

@@ -6,6 +6,7 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
 import solarGif from "../public/solar-p.gif";
+import Header from "./components/Header";
 const StyledApp = styled.div`
   color: white;
 
@@ -44,19 +45,19 @@ function App() {
   return (
     <StyledApp>
       <AppContainer className="app-container">
-        <HeaderSection>
-          <FlexBoxCol>
-            <div className="statistics">
-              <p>Birthday Statistics</p>
-              <span>Days till next full moon: 21</span>
-            </div>
-          </FlexBoxCol>
-        </HeaderSection>
+        <Header
+          beforeFullMoon={0}
+          nextFullMoon={""}
+          illumination={0}
+          onCancel={function () {
+            throw new Error("Function not implemented.");
+          }}
+        />
 
         <ContentSection className="content-container">
-          <div className="test-iframe">
+          {/* <div className="iframe-container">
             <iframe src="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_all.html"></iframe>
-          </div>
+          </div> */}
           <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
           <FlexBoxCol>
             <TonConnectButton
