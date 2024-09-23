@@ -24,92 +24,153 @@ a:hover {
   filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.9));
 }
 
-#canvas-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  transition: opacity 0.1s ease-in, visibility 0s 0.1s;
-}
-
-#canvas-container.hidden {
-  opacity: 0 !important;
-  transition: opacity 0.4s ease-out; /* Slow disappear */
-  visibility: hidden;
-}
-
-#overlap {
-  position: relative;
-  min-height: 20vh; /* Ensure it fills the viewport */
-  z-index: 0; /* Default stacking context */
-  overflow: visible;
-  width: 100%;
-  background-color: black;
-}
-
 #root {
-  position: fixed;
-  min-height: 100vh; /* Ensure it fills the viewport */
-  z-index: 0; /* Default stacking context */
-  overflow: visible;
+  /* min-height: 100vh; */
   width: 100%;
 }
 
-#text-container {
+/* App Container */
+.app-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  top: 10%;
-  height: 80%;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  z-index: 2;
-  transition: ease-in-out 0.5s;
-}
-
-#scroll-area {
-  height: 500vh;
-}
-
-#more-content-container {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease-out, visibility 0s 0.5s; /* Smooth fade-in and fade-out */
-  padding: 20px;
   height: 100vh;
+  justify-content: space-between;
+  background-color: #f0f0f5;
+
+  img {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .content-container {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-color: black;
+    height: 100%;
+
+    button {
+      background-color: rgba(229, 229, 234, 0.12);
+    }
+  }
+}
+
+/* Header Section */
+.app-header {
+  background-color: #1a1b1f;
+  color: white;
+  padding: 1rem;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statistics p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.statistics span {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+/* Content Section */
+.content-section {
+  background-color: #ffffff;
+  flex: 1;
+  padding: 1.5rem;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ton-connect-wrapper {
+  margin-bottom: 1rem;
+}
+
+.network-button {
+  background-color: #1a1b1f;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.moon-data {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.moon-data strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Footer Section */
+.app-footer {
+  background-color: #1a1b1f;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
   color: white;
 }
 
-/* Class to make more-content visible */
-#more-content-container.visible {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.5s ease-in, visibility 0s 0s; /* Smooth fade-in */
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-/* 
-.more-content-container {
-  position: relative;
-  font-family: "Open Sans", sans-serif;
-  font-size: 1rem;
-  text-align: center;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  height: 100vh;
-  padding: 0 10% 0 10%;
-  z-index: 3;
-  opacity: 0;
-} */
 
-.home-button {
-  position: absolute;
-  background-color: white;
-  width: 141px;
-  height: 128px;
-  top: 45%;
-  right: 18%;
-  opacity: 0;
-  visibility: visible;
+.footer-item i {
+  font-size: 1.5rem;
+}
+
+.footer-item span {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.home-icon::before {
+  content: "🏠";
+}
+
+.leaderboard-icon::before {
+  content: "📊";
+}
+
+.friends-icon::before {
+  content: "👥";
+}
+
+.moon-widget {
+  background-color: #3498db;
+  border-radius: 16px;
+  padding: 16px;
+  color: white;
+  font-family: Arial, sans-serif;
+  width: 250px;
+  text-align: left;
+}
+
+.moon-header {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.moon-info {
+  margin-top: 10px;
+}
+
+.moon-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.moon-detail span:last-child {
+  font-weight: bold;
 }

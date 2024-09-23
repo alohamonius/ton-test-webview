@@ -15,36 +15,23 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });
 
-const { camera, scene, controls, animate, clock, renderer } = setupMoon(window);
-runApp(
-  {},
-  scene,
-  renderer,
-  camera,
-  true,
-  undefined,
-  undefined,
-  "canvas-container"
-);
-
 const StyledApp = styled.div`
-  /* Replace with your image URL */
-  background-size: cover; /* Cover the entire div */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating */
+  /* Replace with your image URL 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   background-image: url(${img});
+  */
 `;
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <>
-    <StyledApp id="more-content-container">
-      <div className="header">
-        <TonConnectUIProvider manifestUrl={manifestUrl}>
-          <QueryClientProvider client={queryClient}>
-            <App />
-          </QueryClientProvider>
-        </TonConnectUIProvider>
-      </div>
+    <StyledApp id="" style={{ height: "100vh" }}>
+      <TonConnectUIProvider manifestUrl={manifestUrl}>
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
+      </TonConnectUIProvider>
     </StyledApp>
   </>
 );

@@ -1,0 +1,50 @@
+1. В мене буде Апі яка вертає кількість повних місяців в ДР + типи цих місяців.
+
+
+2. Я ще додав би сонячні затемнення, але вони складні, вони залежать від гео.
+Проте можна зпарсити з вікіпедії.
+
+3. Я поняв що скролбар - це не дуже ЮХ штука. 
+Головний скрін має бути можливо з бекграунд анімацією, але точно без скролбара. 
+
+4. Потрібно задеплоїти цей пітон
+
+5. Підключити пітон на фронт (думаю так буде легше і навіть краще)
+
+
+
+
+
+
+Коли
+С З М
+Тоді стається повний місяць, з шансом на місячне затемнення.
+
+Коли
+С М З
+Стається сонячне затемнення. Лише коли місяць МОЛОДИЙ, Новий.
+
+
+
+
+Earth will experience 11898 solar eclipses during the five millennium period -1999 to +3000 (2000 BCE to 3000 CE).
+Earth will experience 12064 lunar eclipses during the five millennium period -1999 to +3000 (2000 BCE to 3000 CE).
+
+
+
+
+
+
+#[+] Blue moon (second full moon within one calendar month)
+#[*] At this point in time, a partial lunar eclipse takes place
+#[**] At this point in time, a total lunar eclipse takes place
+#[/] At this point in time, penumbral lunar eclipse
+
+#New Moon: 0% illumination
+#Waxing Crescent: 0-49% illumination
+#First Quarter: 50% illumination
+#Waxing Gibbous: 51-99% illumination
+#Full Moon: 100% illumination
+#Waning Gibbous: 99-51% illumination
+#Last Quarter: 50% illumination
+#Waning Crescent: 49-0% illumination
