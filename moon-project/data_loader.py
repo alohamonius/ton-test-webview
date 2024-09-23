@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def load_data(file_name, n_rows=2000):
     """
@@ -31,5 +32,3 @@ def load_data(file_name, n_rows=2000):
         print(f"An error occurred: {e}")
         return None
 
-# Example usage
-df1 = load_data('your_file.csv')

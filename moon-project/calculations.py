@@ -5,9 +5,11 @@ import ephem
 import json
 import os
 import numpy as np  # Make sure to import numpy
+from config import MOON_DATA
+from concurrent.futures import ProcessPoolExecutor
 #Solar 
 
-def get_moons_by_birthday_cache(birthday_str, filename='moon_statistics.json'):
+def get_moons_by_birthday_cache(birthday_str, filename=MOON_DATA):
     """Retrieve moon statistics for a specific birthday from the JSON file."""
     # Convert the birthday string to a datetime object
     birthday = datetime.strptime(birthday_str, "%Y-%m-%d")
@@ -72,16 +74,30 @@ def get_moons_by_birthday(birthday_str, df):
     future_moons_list = future_moons_upcoming['DateTime'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
 
     def count_types(df):
-        blue_moons = df['Flag'].str.contains(r'\[\+\]').sum()
-        partial_eclipses = df['Flag'].str.contains(r'\[\*\]').sum()
-        total_eclipses = df['Flag'].str.contains(r'\[\*\*\]').sum()
-        penumbral_eclipses = df['Flag'].str.contains(r'\[\/\]').sum()
+        # Filter and get the dates for each type of moon event
+        blue_moons = df[df['Flag'].str.contains(r'\[\+\]', na=False)]['DateTime'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
+        partial_eclipses = df[df['Flag'].str.contains(r'\[\*\]', na=False)]['DateTime'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
+        total_eclipses = df[df['Flag'].str.contains(r'\[\*\*\]', na=False)]['DateTime'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
+        penumbral_eclipses = df[df['Flag'].str.contains(r'\[\/\]', na=False)]['DateTime'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
+
         return {
-            "blue_moons": blue_moons,
-            "partial_eclipses": partial_eclipses,
-            "total_eclipses": total_eclipses,
-            "penumbral_eclipses": penumbral_eclipses
-        }
+            "blue_moons": {
+                "count": len(blue_moons),
+                "dates": blue_moons
+            },
+            "partial_eclipses": {
+                "count": len(partial_eclipses),
+                "dates": partial_eclipses
+            },
+            "total_eclipses": {
+                "count": len(total_eclipses),
+                "dates": total_eclipses
+            },
+            "penumbral_eclipses": {
+                "count": len(penumbral_eclipses),
+                "dates": penumbral_eclipses
+            }
+    }
     
     past_types = count_types(total_past_moons)
     future_types = count_types(future_moons_upcoming)
@@ -92,7 +108,9 @@ def get_moons_by_birthday(birthday_str, df):
         "future_count": future_count,
         "past_moons_before": past_moons_before,
         "past_moons_after": past_moons_after,
-        "future_moons": future_moons_list
+        "future_moons": future_moons_list,
+        "past_spec_moons":past_types,
+        "future_spec_moons":future_types
     }
 
 def get_next_full_moon(date_now):
@@ -137,35 +155,53 @@ def convert_to_standard_types(data):
         return int(data) if isinstance(data, np.int64) else float(data)
     return data
 
-
 def get_luckiest(date_results):
     # Define generations
     generations = {
-        "1950-1970": [],
-        "1971-1990": [],
-        "1991-2010": [],
-        "2011-2030": []
+        "1900-1927": [],  # rest
+        "1928-1945": [],  # silent
+        "1946-1964": [],  # babyboomers
+        "1965-1980": [],  # X
+        "1981-1996": [],  # Y
+        "1997-2012": [],  # Z
+        "2013-2030": []   # Alpha
     }
+
+    # Helper function to determine the generation for a given year
+    def get_generation(year):
+        if 1900 <= year <= 1927:
+            return "1900-1927"
+        elif 1928 <= year <= 1945:
+            return "1928-1945"
+        elif 1946 <= year <= 1964:
+            return "1946-1964"
+        elif 1965 <= year <= 1980:
+            return "1965-1980"
+        elif 1981 <= year <= 1996:
+            return "1981-1996"
+        elif 1997 <= year <= 2012:
+            return "1997-2012"
+        elif 2013 <= year <= 2030:
+            return "2013-2030"
+        return None
 
     # Categorize dates into generations
     for date, stats in date_results.items():
         total_moons = stats['past_before_count'] + stats['past_after_count'] + stats['future_count']
         
         if total_moons > 0:  # Only consider dates with moon counts
-            if 1950 <= int(date[:4]) <= 1970:
-                generations["1950-1970"].append((date, total_moons))
-            elif 1971 <= int(date[:4]) <= 1990:
-                generations["1971-1990"].append((date, total_moons))
-            elif 1991 <= int(date[:4]) <= 2010:
-                generations["1991-2010"].append((date, total_moons))
-            elif 2011 <= int(date[:4]) <= 2030:
-                generations["2011-2030"].append((date, total_moons))
+            year = int(date[:4])  # Extract the year from the date string
+            generation = get_generation(year)  # Get the generation for this year
+            
+            if generation:  # Only add to generation if it falls in a known range
+                generations[generation].append((date, total_moons))
 
     # Find the luckiest date in each generation
     luckiest_dates = {}
     for generation, dates in generations.items():
         if dates:
-            luckiest_date = max(dates, key=lambda x: x[1])  # Get the date with the maximum moons
+            # Get the date with the maximum moons
+            luckiest_date = max(dates, key=lambda x: x[1])
             luckiest_dates[generation] = luckiest_date
             print(f"The luckiest date in the generation {generation} is {luckiest_date[0]} with {luckiest_date[1]} full moons!")
         else:
@@ -178,11 +214,9 @@ def next_full_moon(date):
     date_str = request.args.get('date', default=datetime.now().isoformat())
     date_now = datetime.fromisoformat(date_str)
 
-    # Create observer object
     observer = ephem.Observer()
     observer.date = date_now  # Set the observer's date
 
-    # Calculate next full moon, days until then, and moon phase
     next_full_moon_date, days_until_full_moon, phase = get_next_full_moon(date_now)
 
     moon_type = get_moon_type(phase)
@@ -195,9 +229,8 @@ def next_full_moon(date):
     })
 
 def cache(filename,df1):
-
     print("Calculating moon statistics...")
-    start_date = datetime(1950, 1, 1)
+    start_date = datetime(1900, 1, 1)
     end_date = datetime.now()
     date_results = {}
 

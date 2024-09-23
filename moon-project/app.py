@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from data_loader import load_data  
-from config import DATA_FILE, CACHE_FILE
+from config import DATA_FILE_PATH, CACHE_FILE_PATH
 from datetime import datetime, timedelta
 import ephem as ephem
 import json
 import os
 #Solar 
+
 from calculations import (                           # Import specific functions from calculations
     get_moons_by_birthday_cache,
     get_moons_by_birthday,
@@ -16,18 +17,15 @@ from calculations import (                           # Import specific functions
 
 app = Flask(__name__)
 
-
-
-# Ensure cache directory exists
-os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
+os.makedirs(os.path.dirname(CACHE_FILE_PATH), exist_ok=True)
 
 # Load cache file or create it if it doesn't exist
-if os.path.exists(CACHE_FILE):
-    with open(CACHE_FILE, 'r') as f:
+if os.path.exists(CACHE_FILE_PATH):
+    with open(CACHE_FILE_PATH, 'r') as f:
         date_results = json.load(f)  # Load existing cache
 else:
     filename = 'moon_statistics.json'
-    df1 = load_data(DATA_FILE)
+    df1 = load_data(DATA_FILE_PATH)
     date_results = cache(filename,df1)  # Create the cache if it doesn't exist
 
 
@@ -60,7 +58,6 @@ def calculate_moons():
     }
     return jsonify(response), 200
 
-
 @app.route('/get_birthday', methods=['GET'])
 def get_birthday():
     birthday = request.args.get('birthday')
@@ -69,9 +66,11 @@ def get_birthday():
 
     return jsonify({"message": f"Birthday received: {birthday}"}), 200
 
+@app.route('/get_lucky', methods=['GET'])
+def get_lucky():
+    luckiest = get_luckiest(date_results)
+    return jsonify(luckiest), 200
+
 # Run the Flask application
 if __name__ == '__main__':
-    x=cache()
-    print(get_luckiest(x))  
     app.run(debug=True)
-
