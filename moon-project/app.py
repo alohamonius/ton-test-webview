@@ -19,14 +19,13 @@ app = Flask(__name__)
 
 os.makedirs(os.path.dirname(CACHE_FILE_PATH), exist_ok=True)
 
-# Load cache file or create it if it doesn't exist
 if os.path.exists(CACHE_FILE_PATH):
     with open(CACHE_FILE_PATH, 'r') as f:
         date_results = json.load(f)  # Load existing cache
 else:
     filename = 'moon_statistics.json'
-    df1 = load_data(DATA_FILE_PATH)
-    date_results = cache(filename,df1)  # Create the cache if it doesn't exist
+    csvData = load_data(DATA_FILE_PATH) #
+    date_results = cache(CACHE_FILE_PATH,csvData)  # Create the cache if it doesn't exist
 
 
 @app.route('/api/next-full-moon', methods=['GET'])
@@ -48,13 +47,13 @@ def calculate_moons():
         return jsonify({"error": "Invalid birthday format. Please use YYYY-MM-DD"}), 400
 
     # Call the functions to get statistics
-    cached_stats = get_moons_by_birthday_cache(birthday, filename='moon_statistics.json')
-    calculated_stats = get_moons_by_birthday(birthday, date_results)  # No need to add time
+    cached_stats = get_moons_by_birthday_cache(birthday, CACHE_FILE_PATH)
+    # calculated_stats = get_moons_by_birthday(birthday, date_results)  # No need to add time
 
     # Prepare response
     response = {
         "cached_statistics": cached_stats,
-        "calculated_statistics": calculated_stats
+        # "calculated_statistics": calculated_stats
     }
     return jsonify(response), 200
 

@@ -6,18 +6,17 @@ import json
 import os
 import numpy as np  # Make sure to import numpy
 from config import MOON_DATA
-from concurrent.futures import ProcessPoolExecutor
 #Solar 
 
-def get_moons_by_birthday_cache(birthday_str, filename=MOON_DATA):
+def get_moons_by_birthday_cache(birthday_str, cacheFilePath):
     """Retrieve moon statistics for a specific birthday from the JSON file."""
     # Convert the birthday string to a datetime object
     birthday = datetime.strptime(birthday_str, "%Y-%m-%d")
     birthday_date_str = birthday.strftime("%Y-%m-%d")  # Format for the JSON keys
 
     # Check if the statistics file exists
-    if os.path.exists(filename):
-        with open(filename, 'r') as f:
+    if os.path.exists(cacheFilePath):
+        with open(cacheFilePath, 'r') as f:
             date_results = json.load(f)
 
         # Check if the birthday date exists in the data
