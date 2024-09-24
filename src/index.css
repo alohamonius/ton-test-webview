@@ -202,3 +202,48 @@ img.moon {
   clip-path: circle(50% at 50% 50%);
   transition: all 0.3s ease;
 }
+
+/*-----*/
+
+@keyframes moonRotation {
+  /* from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  } */
+  0% {
+    background-position: 0% 0%;
+    border: 0px solid #00000000;
+  }
+  50% {
+    background-position: 150% 0%;
+    border: 0px solid #00000000;
+  }
+  100% {
+    background-position: 300% 0%;
+    border: 0px solid #00000000;
+  }
+}
+
+.moon-background {
+  top: 3.5rem;
+  right: 5%;
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  border-radius: 50%;
+  background-image: url("https://www.solarsystemscope.com/textures/download/2k_moon.jpg");
+  background-repeat: repeat-x;
+  background-size: 110% 100%;
+  opacity: 1;
+  animation-name: moonRotation;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards !important;
+  box-shadow: inset -10px 8px 6px -5px #ffffff,
+    inset 20px -20px 40px 30px rgba(0, 0, 0, 0.9),
+    7px -6px 14px rgba(255, 255, 255, 0.3215686275);
+}

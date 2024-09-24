@@ -71,6 +71,11 @@ function App() {
   return (
     <StyledApp>
       <AppContainer className="app-container">
+        <iframe
+          src="./public/3d/dist/bundle.js"
+          title="Lunar Phase Simulator"
+          style={{ width: "100%", height: "500px", border: "none" }}
+        />
         <Header
           daysToNextFullMoon={nextFullMoon?.daysToNextMoon ?? 0}
           nextFullMoon={formatDateTime(nextFullMoon?.nextFullMoonDate)}

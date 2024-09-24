@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import moon from "../../public/moon.jpg";
+import MoonPhaseView from "./3d/MoonPhaseView";
 const HeaderSection = styled.header`
   width: 100%;
   background-color: #1a1b1f;
@@ -84,15 +85,73 @@ interface HeaderProps {
   onCancel: () => any;
 }
 
+function updateMoonShadow(illumination: number) {
+  const moonElement = document.querySelector<HTMLElement>(".moon-background");
+
+  // Set the shadow intensity based on illumination (0 - New Moon, 100 - Full Moon)
+  const shadowInsetX = -10 + illumination / 5; // Adjust left shadow based on illumination
+  const shadowInsetY = 8 - illumination / 12; // Adjust top shadow based on illumination
+  const shadowBlur = 6 + illumination / 10; // More blur as illumination increases
+  const shadowSpread = -5 + illumination / 10; // Spread of shadow
+
+  const darkShadowX = 20 - illumination / 5; // Dynamic right shadow
+  const darkShadowY = -20 + illumination / 6; // Dynamic bottom shadow
+  const darkBlur = 40 - illumination / 2; // Decrease dark blur as illumination increases
+  const darkSpread = 30 + illumination / 5; // Spread of dark shadow
+
+  const highlightShadow = 7 - illumination / 15; // Highlight becomes less noticeable
+
+  if (moonElement) {
+    moonElement.style.boxShadow = `
+    inset ${shadowInsetX}px ${shadowInsetY}px ${shadowBlur}px ${shadowSpread}px #ffffff,
+    inset ${darkShadowX}px ${darkShadowY}px ${darkBlur}px ${darkSpread}px rgba(0, 0, 0, 0.9),
+    ${highlightShadow}px -6px 14px rgba(255, 255, 255, ${
+      1 - illumination / 100
+    })
+  `;
+  }
+}
+
 const Header: React.FC<HeaderProps> = ({
   daysToNextFullMoon,
   nextFullMoon,
   illumination,
   onCancel,
 }) => {
+  const [i, setI] = useState(0);
+  const [fm, setFm] = useState(100);
+
+  function generateIllumination(
+    min: number = 0,
+    max: number = 100,
+    interval: number = 100
+  ): void {
+    let currentIllumination = min;
+    let increasing = true;
+
+    setInterval(() => {
+      if (increasing) {
+        currentIllumination += 1;
+        if (currentIllumination >= max) {
+          increasing = false;
+        }
+      } else {
+        currentIllumination -= 1;
+        if (currentIllumination <= min) {
+          increasing = true;
+        }
+      }
+
+      // setI(currentIllumination);
+    }, interval);
+  }
   useEffect(() => {
     if (!illumination) return;
+    updateMoonShadow(+illumination);
   }, [illumination]);
+
+  generateIllumination(i, fm);
+
   return (
     <HeaderSection>
       <Row1>
@@ -105,15 +164,29 @@ const Header: React.FC<HeaderProps> = ({
           <SubTitle>Days till next full moon: {daysToNextFullMoon}</SubTitle>
           <SubTitle>Next full moon date: {nextFullMoon}</SubTitle>
           <SubTitle>Illumination: {illumination}%</SubTitle>
+          <h2 style={{ color: "white" }}>{i}</h2>
         </FlexBoxCol>
         <FlexBoxCol>
-          <div className="moon-container">
+          {/* <MoonPhaseView
+            isHidden={false}
+            onHideShowToggle={() => {
+              console.log("onHideShowToggle");
+            }}
+            showLunarLandmark={true}
+            moonAngle={15}
+            onMoonAngleUpdate={() => {
+              console.log("onMoonAngleUpdate");
+            }}
+          /> */}
+          <div className="moon-background"></div>
+
+          {/*
             <img
               className="moon"
               src="https://s3-alpha-sig.figma.com/img/7b29/465b/94a2dfbaae26e88d2ec0d029d7bd5bae?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LXREI5jKP81CsdgTjJfLnmB-aXSRmeuWSToeZ46ZEyApVqDZBN-Nmask0XoERS2foKWO4ARoqxVAVgmwQvVo-2ObFFfzE9miZvL6ndKHTAl7xkmp3zmoOLRawTfmM-W6Xe8TQtTzUMOnz4Ak7GmqspsnqDQsgJJX4wLVaSikjQJW-glTikgQV35RTnuiwTDDoitJev2-aFYBkoAWIO~1e4kR~-dls0MDrzrSGEUeUh5ex1HZ95qSTKK44IQ~3DPxUirwhIyUlraF719JpnjEJv62nIYpGv1s4KWLDv4Ph3ttMsRKReLNQl5fSUUf9tHCBgkK7CQQqKIBHw0qkm3Jmw__"
             />
           </div>
-          <div className="shadow"></div>
+          <div className="shadow"></div> */}
         </FlexBoxCol>
       </Row2>
     </HeaderSection>
