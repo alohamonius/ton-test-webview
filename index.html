@@ -5,10 +5,49 @@
     <link rel="icon" type="image/svg+xml" href="/ton-test-webview/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ton Sample TWA</title>
-    <script type="module" crossorigin src="/ton-test-webview/assets/index-22c6041b.js"></script>
-    <link rel="stylesheet" href="/ton-test-webview/assets/index-e163182f.css">
+
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body > .container {
+        width: 960px;
+      }
+
+      #sim-container {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 930px;
+      }
+
+      #CelestialSphere > canvas {
+        width: 228px;
+        height: 228px;
+      }
+
+      .increment-area button {
+        font-weight: bold;
+        width: 27px;
+      }
+
+      .MainView > canvas {
+        width: 600px;
+        height: 460px;
+      }
+    </style>
+    <script type="module" crossorigin src="/ton-test-webview/assets/index-e41b9a93.js"></script>
+    <link rel="stylesheet" href="/ton-test-webview/assets/index-6330ba55.css">
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
     <!-- <div id="overlap"></div>
     <div id="canvas-container"></div> -->
@@ -17,6 +56,17 @@
     <div id="veil">
       <div id="progress-bar"><div id="progress"></div></div>
     </div> -->
+    <div class="container">
+      <div id="sim-container"></div>
+      <canvas id="Canvas1" width="500" height="500" />
+    </div>
+
+    <!-- <script
+      crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    ></script> -->
+
     
+    <script src="/public/3d/dist/bundle.js"></script>
   </body>
 </html>
