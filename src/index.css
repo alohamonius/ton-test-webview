@@ -179,18 +179,26 @@ a:hover {
 .moon-detail span:last-child {
   font-weight: bold;
 }
-
-.iframe-container {
+.moon-container {
   position: relative;
-  width: 80%;
-  height: 100vh; /* Full height of the viewport */
+  display: inline-block;
   overflow: hidden;
 }
-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+img.moon {
+  display: block;
   width: 100%;
   height: 100%;
-  border: none; /* Remove border */
+  max-width: 64px;
+  min-width: 64px;
+  max-height: 64px;
+  min-height: 64px;
+}
+
+.shadow {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle, transparent 50%, black 50%);
+  clip-path: circle(50% at 50% 50%);
+  transition: all 0.3s ease;
 }

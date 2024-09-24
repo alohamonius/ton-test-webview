@@ -7,6 +7,10 @@ import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
 import solarGif from "../public/solar-p.gif";
 import Header from "./components/Header";
+import ApiService, { MoonData } from "./services/ApiService";
+import React, { useState, useEffect } from "react";
+import { formatDateTime } from "./utils/help";
+
 const StyledApp = styled.div`
   color: white;
 
@@ -42,13 +46,35 @@ const toHome = (event: any) => {
 function App() {
   const { network } = useTonConnect();
 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [nextFullMoon, setNextFullMoon] = useState<MoonData | null>(null);
+
+  const api = new ApiService("http://" + (import.meta.env.VITE_MOON_API ?? ""));
+
+  useEffect(() => {
+    const fetchMoonData = async () => {
+      setLoading(true);
+      try {
+        const data: MoonData = await api.getNextFullMoon("1990-01-01"); // Example birthday
+        setNextFullMoon(data);
+      } catch (err) {
+        setError("Failed to fetch moon data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMoonData();
+  }, []);
+
   return (
     <StyledApp>
       <AppContainer className="app-container">
         <Header
-          beforeFullMoon={0}
-          nextFullMoon={""}
-          illumination={0}
+          daysToNextFullMoon={nextFullMoon?.daysToNextMoon ?? 0}
+          nextFullMoon={formatDateTime(nextFullMoon?.nextFullMoonDate)}
+          illumination={nextFullMoon?.moonPhase.toFixed(2) ?? "0"}
           onCancel={function () {
             throw new Error("Function not implemented.");
           }}

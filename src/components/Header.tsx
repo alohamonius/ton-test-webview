@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import moon from "../../public/moon.jpg";
 const HeaderSection = styled.header`
@@ -78,18 +78,21 @@ const RightIcon = styled.button`
 `;
 
 interface HeaderProps {
-  beforeFullMoon: number;
+  daysToNextFullMoon: number;
   nextFullMoon: string;
-  illumination: number;
+  illumination: string;
   onCancel: () => any;
 }
 
 const Header: React.FC<HeaderProps> = ({
-  beforeFullMoon,
+  daysToNextFullMoon,
   nextFullMoon,
   illumination,
   onCancel,
 }) => {
+  useEffect(() => {
+    if (!illumination) return;
+  }, [illumination]);
   return (
     <HeaderSection>
       <Row1>
@@ -99,25 +102,18 @@ const Header: React.FC<HeaderProps> = ({
       </Row1>
       <Row2>
         <FlexBoxCol>
-          <SubTitle>Days till next full moon: {beforeFullMoon}</SubTitle>
+          <SubTitle>Days till next full moon: {daysToNextFullMoon}</SubTitle>
           <SubTitle>Next full moon date: {nextFullMoon}</SubTitle>
-          <SubTitle>Illumination: {illumination}</SubTitle>
+          <SubTitle>Illumination: {illumination}%</SubTitle>
         </FlexBoxCol>
         <FlexBoxCol>
-          <div>
+          <div className="moon-container">
             <img
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: 176,
-                maxWidth: "64px",
-                minWidth: "64px",
-                maxHeight: "64px",
-                minHeight: "64px",
-              }}
+              className="moon"
               src="https://s3-alpha-sig.figma.com/img/7b29/465b/94a2dfbaae26e88d2ec0d029d7bd5bae?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LXREI5jKP81CsdgTjJfLnmB-aXSRmeuWSToeZ46ZEyApVqDZBN-Nmask0XoERS2foKWO4ARoqxVAVgmwQvVo-2ObFFfzE9miZvL6ndKHTAl7xkmp3zmoOLRawTfmM-W6Xe8TQtTzUMOnz4Ak7GmqspsnqDQsgJJX4wLVaSikjQJW-glTikgQV35RTnuiwTDDoitJev2-aFYBkoAWIO~1e4kR~-dls0MDrzrSGEUeUh5ex1HZ95qSTKK44IQ~3DPxUirwhIyUlraF719JpnjEJv62nIYpGv1s4KWLDv4Ph3ttMsRKReLNQl5fSUUf9tHCBgkK7CQQqKIBHw0qkm3Jmw__"
             />
           </div>
+          <div className="shadow"></div>
         </FlexBoxCol>
       </Row2>
     </HeaderSection>
