@@ -204,6 +204,16 @@ img.moon {
 }
 
 /*-----*/
+.celestial-sphere {
+}
+.moon-phase-view {
+}
+.moon-time-controls {
+}
+.moon-animate-controls {
+}
+.moon-diagram-options {
+}
 
 @keyframes moonRotation {
   /* from {
