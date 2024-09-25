@@ -1,18 +1,31 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-const LunarPhaseSimulator: React.FC = () => {
+interface LunarPhaseSimulatorProps {
+  isVisible: boolean;
+}
+
+const LunarPhaseSimulator: React.FC<LunarPhaseSimulatorProps> = ({
+  isVisible,
+}) => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "../public/3d/lunar-simulator/bundle.js";
-    script.async = true;
-    document.body.appendChild(script);
+    if (isVisible) {
+      const script = document.createElement("script");
+      script.src = "../public/3d/lunar-simulator/bundle.js";
+      script.async = true;
+      document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [isVisible]);
 
-  return <div id="sim-container"></div>; // Make sure the sim-container is where the lunar phase simulator will load
+  // Conditionally render the simulator container based on isVisible prop
+  if (!isVisible) {
+    return null;
+  }
+
+  return <div id="sim-container"></div>; // The simulator will load here
 };
 
 export default LunarPhaseSimulator;

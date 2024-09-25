@@ -45,6 +45,7 @@ function App() {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSimulatorVisible, setSimulatorVisible] = useState(false);
   const [nextFullMoon, setNextFullMoon] = useState<MoonData | null>(null);
 
   const api = new ApiService(import.meta.env.VITE_MOON_API ?? "");
@@ -65,6 +66,10 @@ function App() {
     fetchMoonData();
   }, []);
 
+  const toggleSimulator = () => {
+    setSimulatorVisible(!isSimulatorVisible);
+  };
+
   return (
     <StyledApp>
       <AppContainer className="app-container">
@@ -78,7 +83,10 @@ function App() {
         />
 
         <ContentSection className="content-container">
-          <LunarPhaseSimulator />
+          <button onClick={toggleSimulator}>
+            {isSimulatorVisible ? "Hide" : "Show"} Lunar Simulator
+          </button>
+          <LunarPhaseSimulator isVisible={isSimulatorVisible} />
           <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
           <FlexBoxCol>
             <TonConnectButton
