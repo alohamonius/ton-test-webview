@@ -24,6 +24,7 @@ class ApiService {
   }
 
   async calculateMoons(birthday: string): Promise<any> {
+    debugger;
     const url = `${this.apiUrl}/calculate_moons?birthday=${encodeURIComponent(
       birthday
     )}`;
