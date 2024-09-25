@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import ApiService, { MoonData } from "./services/ApiService";
 import React, { useState, useEffect } from "react";
 import { formatDateTime } from "./utils/help";
+import LunarPhaseSimulator from "./components/3d/LunarPhaseSimulator";
 
 const StyledApp = styled.div`
   color: white;
@@ -71,11 +72,6 @@ function App() {
   return (
     <StyledApp>
       <AppContainer className="app-container">
-        <iframe
-          src="./public/3d/dist/bundle.js"
-          title="Lunar Phase Simulator"
-          style={{ width: "100%", height: "500px", border: "none" }}
-        />
         <Header
           daysToNextFullMoon={nextFullMoon?.daysToNextMoon ?? 0}
           nextFullMoon={formatDateTime(nextFullMoon?.nextFullMoonDate)}
@@ -86,9 +82,7 @@ function App() {
         />
 
         <ContentSection className="content-container">
-          {/* <div className="iframe-container">
-            <iframe src="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_all.html"></iframe>
-          </div> */}
+          <LunarPhaseSimulator />
           <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
           <FlexBoxCol>
             <TonConnectButton

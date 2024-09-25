@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import moon from "../../public/moon.jpg";
-import MoonPhaseView from "./3d/MoonPhaseView";
 const HeaderSection = styled.header`
   width: 100%;
   background-color: #1a1b1f;
