@@ -10,7 +10,7 @@ const LunarPhaseSimulator: React.FC<LunarPhaseSimulatorProps> = ({
   useEffect(() => {
     if (isVisible) {
       const script = document.createElement("script");
-      script.src = "../public/3d/lunar-simulator/bundle.js";
+      script.src = "./3d/lunar-simulator/bundle.js"; //"../public/3d/lunar-simulator/bundle.js";
       script.async = true;
       document.body.appendChild(script);
 
