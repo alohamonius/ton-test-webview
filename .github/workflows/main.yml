@@ -21,7 +21,10 @@ jobs:
         env:
           CI: false
       - name: test
-        run: ls
+        run: |
+          ls
+          ls dist
+          ls public
       - name: Copy bundle.js to dist
         run: |
           cp public/3d/lunar-simulator dist/lunar-simulator
