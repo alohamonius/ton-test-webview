@@ -86,7 +86,7 @@ function App() {
           <button onClick={toggleSimulator}>
             {isSimulatorVisible ? "Hide" : "Show"} Lunar Simulator
           </button>
-          <LunarPhaseSimulator isVisible={isSimulatorVisible} />
+          {/* <LunarPhaseSimulator isVisible={isSimulatorVisible} /> */}
           <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
           <FlexBoxCol>
             <TonConnectButton
