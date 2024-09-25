@@ -1254,4 +1254,4 @@ PERFORMANCE OF THIS SOFTWARE.
   background-repeat: no-repeat; 
   background-image: url(${ZP});
   */
-`;W1.createRoot(document.getElementById("root")).render(Zt(T9,{children:Zt(XP,{id:"",style:{height:"100vh"},children:Zt(EB,{manifestUrl:YP,children:Zt(ix,{client:QP,children:Zt(GP,{})})})})}));
+`;window.onerror=function(e,t,r,n,o){alert(`Error: ${e} at ${t}:${r}:${n}`)};W1.createRoot(document.getElementById("root")).render(Zt(T9,{children:Zt(XP,{id:"",style:{height:"100vh"},children:Zt(EB,{manifestUrl:YP,children:Zt(ix,{client:QP,children:Zt(GP,{})})})})}));
