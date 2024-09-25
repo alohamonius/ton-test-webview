@@ -26,9 +26,7 @@ jobs:
         run: ls dist
       - name: test3
         run: ls public
-      - name: Copy bundle.js to dist
-        run: |
-          cp public/3d/lunar-simulator dist/lunar-simulator
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
