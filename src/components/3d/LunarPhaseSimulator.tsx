@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const LunarPhaseSimulator: React.FC = () => {
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "/lunar-phase-simulator/dist/bundle.js";
+    script.src = "../public/3d/lunar-simulator/bundle.js";
     script.async = true;
     document.body.appendChild(script);
 

@@ -40,10 +40,6 @@ const AppContainer = styled.div`
   margin: 0 auto;
 `;
 
-const toHome = (event: any) => {
-  window.scrollTo(0, 0);
-};
-
 function App() {
   const { network } = useTonConnect();
 
@@ -51,7 +47,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [nextFullMoon, setNextFullMoon] = useState<MoonData | null>(null);
 
-  const api = new ApiService("http://" + (import.meta.env.VITE_MOON_API ?? ""));
+  const api = new ApiService(import.meta.env.VITE_MOON_API ?? "");
 
   useEffect(() => {
     const fetchMoonData = async () => {
