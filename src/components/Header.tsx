@@ -4,6 +4,8 @@ import moon from "../../public/moon.jpg";
 const HeaderSection = styled.header`
   width: 100%;
   background-color: #1a1b1f;
+  text-align: justify;
+  padding: 8px 8px;
   /* border-bottom: 1px solid #e0e0e0; */
   /* display: flex;
   justify-content: space-around;
@@ -16,6 +18,8 @@ const FlexBoxCol = styled.div`
   align-items: baseline;
   text-align: center;
   max-width: 800px;
+  text-align: justify;
+  padding: 8px 8px;
 `;
 
 const Title = styled.p`
@@ -48,6 +52,8 @@ const Row2 = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 5px 0;
+  text-align: justify;
+  padding: 8px 8px;
 `;
 
 const LeftIcon = styled.button`

@@ -53,7 +53,7 @@ a:hover {
     border-top-right-radius: 16px;
     background-color: black;
     height: 100%;
-    gap: 24px;
+    gap: 1.5rem;
 
     display: flex;
     flex-direction: column;

@@ -104,27 +104,26 @@ function App() {
             </>
           ) : (
             <>
+              <TonConnectButton
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  top: "5%",
+                }}
+              />
+
+              {network && (
+                <Button>
+                  {network
+                    ? network === CHAIN.MAINNET
+                      ? "mainnet"
+                      : "testnet"
+                    : "N/A"}
+                </Button>
+              )}
               <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
-              <FlexBoxCol>
-                <TonConnectButton
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: "center",
-                    position: "absolute",
-                    top: "5%",
-                  }}
-                />
-                {network && (
-                  <Button>
-                    {network
-                      ? network === CHAIN.MAINNET
-                        ? "mainnet"
-                        : "testnet"
-                      : "N/A"}
-                  </Button>
-                )}
-              </FlexBoxCol>
+              <FlexBoxCol></FlexBoxCol>
               <FlexBoxCol>
                 <div>
                   <b>The next full moon will be:</b>
@@ -136,20 +135,22 @@ function App() {
           )}
         </ContentSection>
 
-        <FooterSection className="app-footer">
-          <div className="footer-item">
-            <i className="home-icon"></i>
-            <span>Home</span>
-          </div>
-          <div className="footer-item">
-            <span className="leaderboard-icon"></span>
-            <span>Leaderboard</span>
-          </div>
-          <div className="footer-item">
-            <i className="friends-icon"></i>
-            <span>Friends</span>
-          </div>
-        </FooterSection>
+        {!isSimulatorVisible && (
+          <FooterSection className="app-footer">
+            <div className="footer-item">
+              <i className="home-icon"></i>
+              <span>Home</span>
+            </div>
+            <div className="footer-item">
+              <span className="leaderboard-icon"></span>
+              <span>Leaderboard</span>
+            </div>
+            <div className="footer-item">
+              <i className="friends-icon"></i>
+              <span>Friends</span>
+            </div>
+          </FooterSection>
+        )}
       </AppContainer>
     </StyledApp>
   );
