@@ -70,8 +70,17 @@ function App() {
     fetchMoonData();
   }, []);
 
+  const hideSphere = () => {
+    document.getElementById("CelestialSphere")?.classList.add("off");
+  };
+
+  const showSphere = () => {
+    document.getElementById("CelestialSphere")?.classList.add("off");
+  };
+
   const toggleSimulator = () => {
     setSimulatorVisible(!isSimulatorVisible);
+    hideSphere();
   };
 
   const showLunarSimulationButton = (

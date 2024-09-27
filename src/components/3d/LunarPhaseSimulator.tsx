@@ -19,6 +19,10 @@ const LunarPhaseSimulator: React.FC<LunarPhaseSimulatorProps> = ({
 
       script.onload = () => {
         console.log("Lunar Phase Simulator script loaded successfully.");
+        const sphere = document.getElementById("CelestialSphere");
+        if (sphere) {
+          sphere.classList.add("off");
+        }
       };
 
       script.onerror = () => {

@@ -3,11 +3,11 @@
 html,
 body {
   margin: 0;
-  overflow-x: hidden;
   background-color: black;
   font-family: "Stylish", serif;
   font-weight: 400;
   font-style: normal;
+  overflow: hidden;
   /* background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
@@ -212,6 +212,42 @@ img.moon {
 }
 
 /*-----*/
+
+#CelestialSphere {
+  display: none;
+}
+#CelestialSphere.off {
+  display: none;
+}
+
+#sim-container {
+  display: flex;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0 auto;
+  width: 100%;
+  padding: 8px 8px;
+}
+
+#CelestialSphere.on > canvas {
+  width: 228px;
+  height: 228px;
+}
+
+.increment-area button {
+  font-weight: bold;
+  width: 27px;
+}
+
+.MainView > canvas {
+  width: 600px;
+  height: 460px;
+}
+
 .celestial-sphere {
 }
 .moon-phase-view {
