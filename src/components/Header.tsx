@@ -51,9 +51,8 @@ const Row2 = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 5px 0;
   text-align: justify;
-  padding: 8px 8px;
+  line-height: 14px;
 `;
 
 const LeftIcon = styled.button`

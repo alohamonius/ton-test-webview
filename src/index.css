@@ -275,41 +275,44 @@ img.moon {
 }
 
 @keyframes moonRotation {
-  /* from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  } */
   0% {
-    background-position: 0% 0%;
-    border: 0px solid #00000000;
+    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0),
+      /* No light (New Moon) */ inset 100px 0 100px rgba(0, 0, 0, 1); /* Fully shadowed */
+  }
+  25% {
+    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0),
+      /* Starting to illuminate */ inset 75px 0 75px rgba(0, 0, 0, 1); /* Partially shadowed */
   }
   50% {
-    background-position: 150% 0%;
-    border: 0px solid #00000000;
+    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0),
+      /* Half-lit (First Quarter) */ inset 50px 0 50px rgba(0, 0, 0, 1); /* Half shadowed on the left */
+  }
+  75% {
+    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0),
+      /* Almost full moon */ inset 25px 0 25px rgba(0, 0, 0, 1); /* Slightly shadowed */
   }
   100% {
-    background-position: 300% 0%;
-    border: 0px solid #00000000;
+    box-shadow: inset -15px 0 30px rgba(0, 0, 0, 0.7),
+      /* Black arc for Full Moon */ inset 0px 0 0px rgba(0, 0, 0, 0); /* Fully illuminated */
   }
 }
 
 .moon-background {
   display: block;
   width: 4rem;
+  min-width: 4rem;
   height: 4rem;
   border-radius: 50%;
   background-image: url("https://www.solarsystemscope.com/textures/download/2k_moon.jpg");
   background-repeat: repeat-x;
   background-size: 110% 100%;
   opacity: 1;
-  animation-name: moonRotation;
-  animation-duration: 15s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards !important;
-  box-shadow: inset -10px 8px 6px -5px #ffffff,
-    inset 20px -20px 40px 30px rgba(0, 0, 0, 0.9),
-    7px -6px 14px rgba(255, 255, 255, 0.3215686275);
+  box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0),
+    inset 100px 0 100px rgba(0, 0, 0, 1); /* Start fully shadowed (New Moon) */
+
+  animation: moonRotation 15s linear infinite normal;
+}
+
+.moon-background:hover {
+  box-shadow: inset 100px 0 100px rgba(0, 0, 0, 1);
 }
