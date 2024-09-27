@@ -24,9 +24,9 @@ const StyledApp = styled.div`
   */
 `;
 
-window.onerror = function (message, source, lineno, colno, error) {
-  alert(`Error: ${message} at ${source}:${lineno}:${colno}`);
-};
+// window.onerror = function (message, source, lineno, colno, error) {
+//   alert(`Error: ${message} at ${source}:${lineno}:${colno}`);
+// };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <>

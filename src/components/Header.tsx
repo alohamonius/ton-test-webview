@@ -117,53 +117,18 @@ const Header: React.FC<HeaderProps> = ({
   illumination,
   onCancel,
 }) => {
-  const [i, setI] = useState(0);
-  const [fm, setFm] = useState(100);
-
-  function generateIllumination(
-    min: number = 0,
-    max: number = 100,
-    interval: number = 100
-  ): void {
-    let currentIllumination = min;
-    let increasing = true;
-
-    setInterval(() => {
-      if (increasing) {
-        currentIllumination += 1;
-        if (currentIllumination >= max) {
-          increasing = false;
-        }
-      } else {
-        currentIllumination -= 1;
-        if (currentIllumination <= min) {
-          increasing = true;
-        }
-      }
-
-      // setI(currentIllumination);
-    }, interval);
-  }
-  useEffect(() => {
-    if (!illumination) return;
-    updateMoonShadow(+illumination);
-  }, [illumination]);
-
-  generateIllumination(i, fm);
-
   return (
     <HeaderSection>
-      <Row1>
+      {/* <Row1>
         <LeftIcon onClick={onCancel}>❌</LeftIcon>
         <CenterIcon>Moooo🌕N</CenterIcon>
         <RightIcon>⋯</RightIcon>
-      </Row1>
+      </Row1> */}
       <Row2>
         <FlexBoxCol>
           <SubTitle>Days till next full moon: {daysToNextFullMoon}</SubTitle>
           <SubTitle>Next full moon date: {nextFullMoon}</SubTitle>
           <SubTitle>Illumination: {illumination}%</SubTitle>
-          <h2 style={{ color: "white" }}>{i}</h2>
         </FlexBoxCol>
         <FlexBoxCol>
           {/* <MoonPhaseView

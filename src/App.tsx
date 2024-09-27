@@ -44,6 +44,7 @@ function App() {
   const { network } = useTonConnect();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [timezone, setTimezone] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [isSimulatorVisible, setSimulatorVisible] = useState(false);
   const [nextFullMoon, setNextFullMoon] = useState<MoonData | null>(null);
@@ -51,10 +52,13 @@ function App() {
   const api = new ApiService(import.meta.env.VITE_MOON_API ?? "");
 
   useEffect(() => {
+    setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+
     const fetchMoonData = async () => {
       setLoading(true);
       try {
-        const data: MoonData = await api.getNextFullMoon("1990-01-01"); // Example birthday
+        const data: MoonData = await api.getNextFullMoon("2024-10-01"); // Example birthday
+
         setNextFullMoon(data);
       } catch (err) {
         setError("Failed to fetch moon data");
@@ -70,12 +74,21 @@ function App() {
     setSimulatorVisible(!isSimulatorVisible);
   };
 
+  const showLunarSimulationButton = (
+    <button onClick={toggleSimulator} className="hide-lunar-button">
+      {isSimulatorVisible ? "Hide" : "Show"} Lunar Simulator
+    </button>
+  );
   return (
     <StyledApp>
       <AppContainer className="app-container">
         <Header
           daysToNextFullMoon={nextFullMoon?.daysToNextMoon ?? 0}
-          nextFullMoon={formatDateTime(nextFullMoon?.nextFullMoonDate)}
+          nextFullMoon={
+            nextFullMoon
+              ? formatDateTime(nextFullMoon?.nextFullMoonDate + "Z", timezone)
+              : ""
+          }
           illumination={nextFullMoon?.moonPhase.toFixed(2) ?? "0"}
           onCancel={function () {
             throw new Error("Function not implemented.");
@@ -83,38 +96,44 @@ function App() {
         />
 
         <ContentSection className="content-container">
-          <button onClick={toggleSimulator}>
-            {isSimulatorVisible ? "Hide" : "Show"} Lunar Simulator
-          </button>
-          <LunarPhaseSimulator isVisible={isSimulatorVisible} />
-          <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
-          <FlexBoxCol>
-            <TonConnectButton
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                position: "absolute",
-                top: "5%",
-              }}
-            />
-            {network && (
-              <Button>
-                {network
-                  ? network === CHAIN.MAINNET
-                    ? "mainnet"
-                    : "testnet"
-                  : "N/A"}
-              </Button>
-            )}
-          </FlexBoxCol>
-          <FlexBoxCol>
-            <div>
-              <b>The next full moon will be:</b>
-              <i>Thursday * 17 October 2024 * 1:26:24 pm</i>
-              <i>Central European Summer Time (CEST)</i>
-            </div>
-          </FlexBoxCol>
+          {showLunarSimulationButton}
+
+          {isSimulatorVisible ? (
+            <>
+              <LunarPhaseSimulator isVisible={isSimulatorVisible} />
+            </>
+          ) : (
+            <>
+              <img style={{ width: "100%" }} src={solarGif} alt="loading..." />
+              <FlexBoxCol>
+                <TonConnectButton
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "center",
+                    position: "absolute",
+                    top: "5%",
+                  }}
+                />
+                {network && (
+                  <Button>
+                    {network
+                      ? network === CHAIN.MAINNET
+                        ? "mainnet"
+                        : "testnet"
+                      : "N/A"}
+                  </Button>
+                )}
+              </FlexBoxCol>
+              <FlexBoxCol>
+                <div>
+                  <b>The next full moon will be:</b>
+                  <i>Thursday * 17 October 2024 * 1:26:24 pm</i>
+                  <i>Central European Summer Time (CEST)</i>
+                </div>
+              </FlexBoxCol>
+            </>
+          )}
         </ContentSection>
 
         <FooterSection className="app-footer">

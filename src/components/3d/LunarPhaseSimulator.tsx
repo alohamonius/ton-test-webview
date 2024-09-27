@@ -36,7 +36,6 @@ const LunarPhaseSimulator: React.FC<LunarPhaseSimulatorProps> = ({
     }
   }, [isVisible]);
 
-  // Conditionally render the simulator container based on isVisible prop
   if (!isVisible) {
     return null;
   }

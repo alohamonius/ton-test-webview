@@ -48,10 +48,15 @@ a:hover {
   }
 
   .content-container {
+    margin-top: 1rem;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     background-color: black;
     height: 100%;
+    gap: 24px;
+
+    display: flex;
+    flex-direction: column;
 
     button {
       background-color: rgba(229, 229, 234, 0.12);
@@ -122,6 +127,9 @@ a:hover {
   justify-content: space-around;
   padding: 1rem;
   color: white;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer-item {
@@ -214,6 +222,21 @@ img.moon {
 }
 .moon-diagram-options {
 }
+.hide-lunar-button {
+  margin: 0 auto;
+  background-color: rgba(229, 229, 234, 0.12);
+  color: #ffffff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+  padding: 8px 16px 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  line-height: 18px;
+  transition: transform 0.125s ease-in-out;
+  border: none;
+  border-radius: 100vh;
+}
 
 @keyframes moonRotation {
   /* from {
@@ -237,12 +260,9 @@ img.moon {
 }
 
 .moon-background {
-  top: 3.5rem;
-  right: 5%;
   display: block;
   width: 4rem;
   height: 4rem;
-  position: absolute;
   border-radius: 50%;
   background-image: url("https://www.solarsystemscope.com/textures/download/2k_moon.jpg");
   background-repeat: repeat-x;
